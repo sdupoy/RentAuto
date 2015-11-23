@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/publicTemplate.xhtml">
+
+    <ui:define name="title">
+        User login
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <form method="post" action="j_security_check" class="form-signin">
+                <label for="j_username" class="sr-only">Username:</label>
+                <input class="form-control" type="text" id="j_username" name="j_username" placeHolder="Username" required="true" autofocus="true"/>
+                <label for="j_password" class="sr-only">Password:</label>
+                <input class="form-control" type="password" id="j_password" name="j_password" placeHolder="Password" required="true"/>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"/> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+
+         
+        </div> 
+    </ui:define>
+
+</ui:composition>
