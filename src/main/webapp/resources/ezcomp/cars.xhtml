@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="cars" type="java.util.List" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:dataTable class="table table-hover table-striped" value="#{cc.attrs.cars}" var="car">
+
+            <h:column>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                <h:outputText value="#{car.id}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Model"/></f:facet>
+                <h:outputText value="#{car.model}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Maker"/></f:facet>
+                <h:outputText value="#{car.maker}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="License Plate"/></f:facet>
+                <h:outputText value="#{car.licensePlate}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Kilometers"/></f:facet>
+                <h:outputText value="#{car.nbKms}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Options"/></f:facet>
+                <h:outputText value="#{car.options}"></h:outputText>
+            </h:column>
+            
+            <!-- Need for a column for last maintenance and last reservation -->
+            
+            <h:column>
+                <f:facet name="header"><h:outputText value="Actions"/></f:facet>
+                <h:form>
+                    <h:commandLink action="#{employeeController.doShowCar(car)}" value="Show"/>
+                    <h:commandLink action="#{employeeController.doUpdateCar(car)}" value="Edit"/>
+                    <h:commandLink action="#{employeeController.doDeleteCar(car)}" value="Delete"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+    </cc:implementation>
+</html>

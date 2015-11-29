@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Log in</title>
         <!-- Bootstrap -->
         <h:outputStylesheet library="webjars/bootstrap/3.3.5/css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="style.css"  />
+        <title><ui:insert name="title">Welcome</ui:insert></title>
 
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,30 +19,30 @@
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->  
+        <![endif]-->
     </h:head>
     <h:body>
-        <div class="login_container">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            
-            <h:form>
-                    <h:panelGroup layout="block" class="form-group">
-                        <h:outputLabel for="j_username" value="Username"/>
-                        <h:inputText id="j_username" class="form-control" value="#{loginController.username}" required="true"/>  
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" class="form-group">
-                        <h:outputLabel for="j_password" value="Password"/>
-                        <h:inputSecret id="j_password" class="form-control" value="#{loginController.password}" required="true"/>  
-                    </h:panelGroup>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="remember-me"/> Remember me
-                        </label>
+        <div class="header-client">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div id="user-basic-info">
+                        <h4>#{loginController.getRemoteUser()}</h4>
+                        <h:form>
+                            <h:commandButton action="clientHome.xhtml" class="btn btn-default" image="../../resources/images/home.png" />
+                            <h:commandButton action="#{loginController.doLogOut()}" class="btn btn-default" image="../../resources/images/logoutLogo.png"/>
+                        </h:form>
                     </div>
-                <h:commandButton action="#{loginController.doLogin()}" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
-            </h:form>
+                </div>
+            </div>
         </div>
-        
+
+        <div class="client-container">
+            <ui:insert name="content">Default content</ui:insert>
+        </div>
+
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

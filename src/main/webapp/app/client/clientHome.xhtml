@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="/WEB-INF/templates/clientTemplate.xhtml">
+    
+    <ui:define name="title">
+        Welcome
+    </ui:define>
+    
+    <ui:define name="content">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="img-circle"  src="../../resources/images/calendar.png" alt="New reservation logo" width="140" height="140"/>
+                <h2>Make a new reservation</h2>
+                <p>See available cars and place a new reservation. </p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-sm-4">
+                <img class="img-circle" src="../../resources/images/eye.jpg" alt="See reservations logo" width="140" height="140"/>
+                <h2>See reservations</h2>
+                <p>See current and past reservations.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-sm-4">
+                <img class="img-circle" src="../../resources/images/cog.png" alt="Manage your account" width="140" height="140"/>
+                <h2>Manage your account</h2>
+                <p>Manage your personal information and your settings.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+    </ui:define>
+        
+</ui:composition>
+

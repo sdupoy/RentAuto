@@ -5,6 +5,7 @@
         <param-value>Development</param-value>
     </context-param>
     
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -23,22 +24,49 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
+    
     <security-constraint>
-        <display-name>Protected Resources</display-name>
+        <display-name>Client Resources</display-name>
         <web-resource-collection>
-            <web-resource-name>TestServlet</web-resource-name>
-            <description>Protection of every resource</description>
-            <url-pattern>/mp3/*</url-pattern>
+            <web-resource-name>Client resources</web-resource-name>
+            <description>Protection of concerned resource</description>
+            <url-pattern>/app/client/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Allow roles</description>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Employee Resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>Agents and/or managers resources</web-resource-name>
+            <description>Protection of concerned resource</description>
+            <url-pattern>/app/employee/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description>Allow roles</description>
             <role-name>AGENT</role-name>
             <role-name>MANAGER</role-name>
-            <role-name>CLIENT</role-name>
         </auth-constraint>
     </security-constraint>
+    
+    <security-constraint>
+        <display-name>Admin Resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>Administration</web-resource-name>
+            <description>Protection of every resource</description>
+            <url-pattern>/app/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Allow roles</description>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>itmd4515Realm</realm-name>
@@ -58,5 +86,9 @@
     <security-role>
         <description>Client role</description>
         <role-name>CLIENT</role-name>
+    </security-role>
+    <security-role>
+        <description>Admin role</description>
+        <role-name>ADMIN</role-name>
     </security-role>
 </web-app>
