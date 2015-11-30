@@ -13,7 +13,6 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <title><ui:insert name="title">Welcome</ui:insert></title>
 
-
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -31,6 +30,7 @@
                         <h4>#{loginController.getRemoteUser()}</h4>
                         <h:form>
                             <h:commandButton action="#{loginController.goHome()}" class="btn btn-default" image="../../resources/images/home.png" />
+                            <h:commandButton action="#{clientController.doHelp()}" class="btn btn-default" image="../../resources/images/helpLogo.png" title="Help"/>
                             <h:commandButton action="#{loginController.doLogOut()}" class="btn btn-default" image="../../resources/images/logoutLogo.png"/>
                         </h:form>
                     </div>
@@ -46,7 +46,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <h:outputScript library="webjars/bootstrap/3.3.5/js" name="bootstrap.min.js"/>
+        <h:outputScript library="webjars/bootstrap/3.3.5/js" name="bootstrap.min.js"/> 
     </h:body>
 </html>
 

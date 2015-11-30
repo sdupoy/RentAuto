@@ -7,6 +7,7 @@ package edu.iit.sat.itmd4515.sdupoy.fp.service;
 
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Agency;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Car;
+import edu.iit.sat.itmd4515.sdupoy.fp.domain.Maintenance;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -58,6 +59,15 @@ public class CarService extends AbstractService<Car> {
         currentCar.setNbKms(newCar.getNbKms());
         currentCar.setOptions(newCar.getOptions());
         
+    }
+    
+    public void addMaintenance(Car car, Maintenance m){
+        car = em.getReference(Car.class, car.getId());
+        
+        car.addMaintenance(m);
+        m.setCar(car);
+        em.persist(m);
+        em.merge(car);
     }
     
     /**

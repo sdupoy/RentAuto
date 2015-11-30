@@ -29,7 +29,7 @@ public class Bill implements Serializable, Comparable {
     //----------------------//
     @Id @GeneratedValue
     @Column(name = "BILL_ID", nullable = false)
-    private Long id;
+    protected Long id;
     private Boolean isPaid;
     private float amount;
 

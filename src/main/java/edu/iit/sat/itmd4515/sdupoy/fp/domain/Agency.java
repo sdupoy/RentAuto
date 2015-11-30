@@ -32,7 +32,7 @@ public class Agency implements Serializable, Comparable {
     //----------------------//
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AGENCY_ID", nullable = false)
-    private Long id;
+    protected Long id;
     private String location;
     
     @OneToMany

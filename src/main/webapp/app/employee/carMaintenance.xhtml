@@ -1,8 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../../WEB-INF/templates/employeeTemplate.xhtml">
-
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="../../WEB-INF/templates/employeeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+    
     <ui:define name="title">
         Car Maintenance
     </ui:define>
@@ -14,6 +18,8 @@
     </ui:define>
 
     <ui:define name="content">
+        <ezcomp:maintenance maintenance="#{employeeController.maintenance}" action="#{employeeController.executeCreateMaintenance()}" readonly="false" />
+        
     </ui:define>
 
 </ui:composition>

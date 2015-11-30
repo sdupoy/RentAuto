@@ -6,17 +6,15 @@
 package edu.iit.sat.itmd4515.sdupoy.fp.web;
 
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Agency;
-import edu.iit.sat.itmd4515.sdupoy.fp.domain.Agent;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Car;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Employee;
-import edu.iit.sat.itmd4515.sdupoy.fp.domain.Manager;
+import edu.iit.sat.itmd4515.sdupoy.fp.domain.Maintenance;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.CarService;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.EmployeeService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -34,6 +32,8 @@ public class EmployeeController extends AbstractController {
 
     private List<Car> cars;
     private Car car;
+    private List<Maintenance> maintenances;
+    private Maintenance maintenance;
     private Employee employee;
     private Agency agency;
 
@@ -46,6 +46,7 @@ public class EmployeeController extends AbstractController {
     @PostConstruct
     protected void postConstruct() {
         car = new Car();
+        maintenance = new Maintenance();
         employee = employeeService.findEmployeeByUsername(loginController.getRemoteUser());
         agency = employee.getAgency();
         cars = agency.getCars();
@@ -86,6 +87,7 @@ public class EmployeeController extends AbstractController {
     
     public String doShowCar(Car car) {
         this.car = car;
+        this.maintenances = car.getMaintenances();
         return "carDisplay";
     }
 
@@ -109,7 +111,17 @@ public class EmployeeController extends AbstractController {
     
     public String doMaintainCar(Car car){
         this.car = car;
+        this.maintenance = new Maintenance();
+        System.out.println("Car id :" + car.getId());
+        System.out.println("M id :" + maintenance.getId());
         return "carMaintenance";
+    }
+    
+    public String executeCreateMaintenance(){
+        System.out.println("Car id :" + car.getId());
+        System.out.println("M id :" + maintenance.getId());
+        carService.addMaintenance(car, maintenance);
+        return "carManagementHome";
     }
 
     public List<Car> getCars() {
@@ -127,6 +139,32 @@ public class EmployeeController extends AbstractController {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    public List<Maintenance> getMaintenances() {
+        return maintenances;
+    }
+
+    public void setMaintenances(List<Maintenance> maintenances) {
+        this.maintenances = maintenances;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
+    }
+
+    public Agency getAgency() {
+        return agency;
+    }
+
+    public void setAgency(Agency agency) {
+        this.agency = agency;
+    }
+    
+    
 
     public Employee getEmployee() {
         return employee;

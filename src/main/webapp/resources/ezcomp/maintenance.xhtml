@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
 
     <!-- INTERFACE -->
     <cc:interface>
@@ -14,8 +15,7 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-
-        <h:form>
+         <h:form>
             <h:panelGroup layout="block" class="form-group">
                 <h:outputLabel for="id" value="Maintenance ID #{cc.attrs.maintenance.id}" />
                 <h:inputHidden id="id" value="#{cc.attrs.maintenance.id}" />
@@ -26,17 +26,18 @@
                 <h:inputText class="form-control" id="startDate" value="#{cc.attrs.maintenance.startDate}">
                     <f:convertDateTime type="date" dateStyle="short"/>
                 </h:inputText>
-                <h:message for="startDate" style="color: red"/>
             </h:panelGroup>
             <h:panelGroup layout="block" class="form-group">
                 <h:outputLabel for="endDate" value="To"/>
                 <h:inputText class="form-control" id="endDate" value="#{cc.attrs.maintenance.endDate}">
                     <f:convertDateTime type="date" dateStyle="short"/>
                 </h:inputText>
-                <h:message for="endDate" style="color: red"/>
             </h:panelGroup>
             
             <h:commandButton action="#{cc.attrs.action}" class="btn btn-default" value="Save" rendered="#{not cc.attrs.readonly}" />
+            <ezcomp:car car="#{employeeController.car}" readonly="true" />
+        
+        
         </h:form>
 
     </cc:implementation>

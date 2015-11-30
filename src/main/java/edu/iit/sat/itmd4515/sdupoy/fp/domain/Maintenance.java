@@ -28,7 +28,7 @@ public class Maintenance implements Serializable, Comparable {
     //----------------------//
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MTN_ID", nullable = false)
-    private Long id;
+    protected Long id;
     
     @ManyToOne(optional=false)
     @JoinColumn(name="CAR_ID",referencedColumnName="CAR_ID")
