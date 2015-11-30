@@ -58,6 +58,19 @@ public class LoginController extends AbstractController{
         } else{
             return "error.xhtml" + FACES_REDIRECT;
         }
+    }
+    
+    public String goHome(){
+        HttpServletRequest req = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        if(req.isUserInRole("AGENT")){
+            return "/app/employee/agentHome.xhtml" + FACES_REDIRECT;
+        } else if (req.isUserInRole("MANAGER")){
+            return "/app/employee/managerHome.xhtml" + FACES_REDIRECT;
+        } else if (req.isUserInRole("CLIENT")){
+            return "/app/client/clientHome.xhtml" + FACES_REDIRECT;
+        } else{
+            return "error.xhtml" + FACES_REDIRECT;
+        }
         
     }
     

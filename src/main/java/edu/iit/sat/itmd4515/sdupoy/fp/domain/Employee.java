@@ -75,6 +75,10 @@ public abstract class Employee implements Serializable, Comparable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     /**
      * Get the value of ssn
      * @return the value of ssn

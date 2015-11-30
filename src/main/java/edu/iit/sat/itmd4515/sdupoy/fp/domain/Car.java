@@ -34,12 +34,14 @@ public class Car implements Serializable, Comparable {
     //----------------------//
     //      Attributes      //
     //----------------------//
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CAR_ID", nullable = false)
-    private Long id;
+    protected Long id;
     
     @Column(unique = true)
     private String licensePlate;
+    
     private Long nbKms;
     private String maker;
     private String model;
@@ -166,6 +168,10 @@ public class Car implements Serializable, Comparable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     /**
      * Get the value of licensePlate
      * @return the value of licensePlate

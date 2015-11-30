@@ -3,25 +3,18 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                template="./../../WEB-INF/templates/employeeTemplate.xhtml"
+                template="../../WEB-INF/templates/employeeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
 
     <ui:define name="title">
-        Car Management Home
+        Show Car Details
     </ui:define>
 
-    <ui:define name="nav">
-        
-    </ui:define>
-
-    <ui:define name="sidebar">
-        <ul class="nav nav-sidebar">
-            <li><a href="carCreation.xhtml">Add a new car</a></li>
-            <li><a href="#">Search a car</a></li>
-        </ul>
-    </ui:define>
+    <ui:define name="nav"></ui:define>
     
     <ui:define name="content">
-        <ezcomp:cars cars="#{employeeController.cars}" />
+        <ezcomp:car car="#{employeeController.car}" readonly="true" />
     </ui:define>
+
 </ui:composition>

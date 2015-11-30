@@ -55,7 +55,14 @@ public class EmployeeController extends AbstractController {
 
     private void refreshCars() {
         cars = employeeService.findEmployeeByUsername(loginController.getRemoteUser()).getAgency().getCars();
-        
+    }
+    
+    public String doHelp() {
+        return "help";
+    }
+    
+    public String doSettings() {
+        return "settings";
     }
     
     /**
@@ -64,7 +71,7 @@ public class EmployeeController extends AbstractController {
      */
     public String doCreateCar() {
         car = new Car();
-        return "createFarm";
+        return "carCreation";
     }
 
     /**
@@ -72,9 +79,37 @@ public class EmployeeController extends AbstractController {
      * @return the home page of car management
      */
     public String executeCreateCar() {
-        carService.create(car, agency);
+        carService.create(car, employee.getAgency());
+        refreshCars();
+        return "carManagementHome.xhtml";
+    }
+    
+    public String doShowCar(Car car) {
+        this.car = car;
+        return "carDisplay";
+    }
+
+    public String doUpdateCar(Car car) {
+        this.car = car;
+        return "carEdition";
+    }
+    
+    public String executeUpdateCar() {
+        carService.update(car);
+        refreshCars();
+
+        return "carManagementHome";
+    }
+
+    public String doDeleteCar(Car car) {
+        carService.delete(car, agency);
         refreshCars();
         return "carManagementHome";
+    }
+    
+    public String doMaintainCar(Car car){
+        this.car = car;
+        return "carMaintenance";
     }
 
     public List<Car> getCars() {

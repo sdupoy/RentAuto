@@ -25,16 +25,17 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div id="employee-header" class="container-fluid">
                 <div id="navbar" class="navbar-header">
-                    <a class="navbar-brand" href="#" title="Home">CaRent App</a>
+                    <span class="navbar-brand">CaRent App</span>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
+                    
                     <ul class="nav navbar-nav navbar-right">
-                        <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/home.png" title="Home"/></h:form></li>
+                        <li><h:form><h:commandButton action="#{loginController.goHome()}" class="btn btn-default" image="../../resources/images/home.png" title="Home"/></h:form></li>
                         <li><h:form><h:commandButton action="carManagementHome" class="btn btn-default" image="../../resources/images/carLogo.png" title="Car management"/></h:form></li>
                         <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/clientLogo.png" title="Client management"/></h:form></li>
                         <ui:insert name="nav"></ui:insert>
-                        <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/cogLogo.png" title="Settings"/></h:form></li>
-                        <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/helpLogo.png" title="Help"/></h:form></li>
+                        <li><h:form><h:commandButton action="#{employeeController.doSettings()}" class="btn btn-default" image="../../resources/images/cogLogo.png" title="Settings"/></h:form></li>
+                        <li><h:form><h:commandButton action="#{employeeController.doHelp()}" class="btn btn-default" image="../../resources/images/helpLogo.png" title="Help"/></h:form></li>
                         <li><h:form><h:commandButton action="#{loginController.doLogOut()}" class="btn btn-default" image="../../resources/images/logoutLogo.png" title="Logout"/></h:form></li>
                     </ul>
                 </div>
@@ -42,7 +43,20 @@
         </nav>
 
         <div id="employee-container" class="container-fluid">
-            <ui:insert name="content">Default content</ui:insert>
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li>#{employeeController.employee.firstName} #{employeeController.employee.lastName}</li>
+                    </ul>
+                    <ui:insert name="sidebar"></ui:insert>
+                    
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <ui:insert name="content">Default content</ui:insert>
+                </div>
+            </div>
+            
+            
         </div>
 
 

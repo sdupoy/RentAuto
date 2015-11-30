@@ -23,10 +23,25 @@
             <h:panelGroup layout="block" class="form-group">
                 <h:outputLabel for="carModel" value="Car Model"/>
                 <h:inputText class="form-control" id="carModel" value="#{cc.attrs.car.model}"/>
-                <h:message for="carModel" style="color: red"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="carMaker" value="Car Maker"/>
+                <h:inputText class="form-control" id="carMaker" value="#{cc.attrs.car.maker}"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="carLP" value="License Plate"/>
+                <h:inputText class="form-control" id="carLP" value="#{cc.attrs.car.licensePlate}"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="carNbKms" value="Number of Kilometers"/>
+                <h:inputText class="form-control" id="carNbKms" value="#{cc.attrs.car.nbKms}"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="carOptions" value="Options"/>
+                <h:inputText class="form-control" id="carOptions" value="#{cc.attrs.car.options}"/>
             </h:panelGroup>
            
-            <h:commandButton action="#{cc.attrs.action}" value="Save" rendered="#{not cc.attrs.readonly}" />
+            <h:commandButton action="#{cc.attrs.action}" class="btn btn-default" value="Save" rendered="#{not cc.attrs.readonly}" />
         </h:form>
 
     </cc:implementation>

@@ -30,7 +30,7 @@
                     <div id="user-basic-info">
                         <h4>#{loginController.getRemoteUser()}</h4>
                         <h:form>
-                            <h:commandButton action="clientHome.xhtml" class="btn btn-default" image="../../resources/images/home.png" />
+                            <h:commandButton action="#{loginController.goHome()}" class="btn btn-default" image="../../resources/images/home.png" />
                             <h:commandButton action="#{loginController.doLogOut()}" class="btn btn-default" image="../../resources/images/logoutLogo.png"/>
                         </h:form>
                     </div>

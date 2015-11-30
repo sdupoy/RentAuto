@@ -80,6 +80,10 @@ public class Reservation implements Serializable, Comparable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     /**
      * Get the value of startDate
      * @return the value of startDate

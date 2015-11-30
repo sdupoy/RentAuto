@@ -31,12 +31,33 @@ public class CarService extends AbstractService<Car> {
      * @param agency 
      */
     public void create(Car car, Agency agency){
-        car = em.getReference(Car.class, car.getId());
+        agency = em.getReference(Agency.class, agency.getId());
         
         car.setAgency(agency);
         agency.addCar(car);
         
         em.persist(car);
+    }
+    
+    public void delete(Car car, Agency agency){
+        agency = em.getReference(Agency.class, agency.getId());
+        car = em.getReference(Car.class, car.getId());
+        
+        agency.getCars().remove(car);
+        car.setAgency(null);
+        
+        em.remove(car);
+    }
+    
+    public void update(Car newCar){
+        Car currentCar = em.getReference(Car.class, newCar.getId());
+        
+        currentCar.setLicensePlate(newCar.getLicensePlate());
+        currentCar.setMaker(newCar.getMaker());
+        currentCar.setModel(newCar.getModel());
+        currentCar.setNbKms(newCar.getNbKms());
+        currentCar.setOptions(newCar.getOptions());
+        
     }
     
     /**

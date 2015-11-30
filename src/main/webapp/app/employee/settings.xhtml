@@ -3,25 +3,22 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                template="./../../WEB-INF/templates/employeeTemplate.xhtml"
-                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+                template="/WEB-INF/templates/employeeTemplate.xhtml">
 
     <ui:define name="title">
-        Car Management Home
+        Settings
     </ui:define>
 
     <ui:define name="nav">
-        
     </ui:define>
 
     <ui:define name="sidebar">
-        <ul class="nav nav-sidebar">
-            <li><a href="carCreation.xhtml">Add a new car</a></li>
-            <li><a href="#">Search a car</a></li>
-        </ul>
     </ui:define>
-    
+
     <ui:define name="content">
-        <ezcomp:cars cars="#{employeeController.cars}" />
+        <p>
+            You will soon be able to change your password and update your info.
+        </p>
     </ui:define>
+
 </ui:composition>

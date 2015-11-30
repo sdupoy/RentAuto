@@ -58,6 +58,12 @@ public class Bill implements Serializable, Comparable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
+    
     /**
      * Get the value of isPaid
      * @return the value of isPaid, true if the bill has been paid, false if not.

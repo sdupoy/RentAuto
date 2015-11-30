@@ -1,15 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/templates/employeeTemplate.xhtml"
-                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+                template="./../../WEB-INF/templates/employeeTemplate.xhtml">
 
     <ui:define name="title">
-        Display Car
+        Car Maintenance
+    </ui:define>
+
+    <ui:define name="nav">
+    </ui:define>
+
+    <ui:define name="sidebar">
     </ui:define>
 
     <ui:define name="content">
-        <car car="#{employeeController.car}" readonly="true" />
     </ui:define>
 
 </ui:composition>

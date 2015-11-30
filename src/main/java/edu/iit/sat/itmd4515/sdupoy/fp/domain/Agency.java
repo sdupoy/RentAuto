@@ -59,6 +59,13 @@ public class Agency implements Serializable, Comparable {
         return id;
     }    
 
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
+
     /**
      * Get the value of location
      * @return the value of location

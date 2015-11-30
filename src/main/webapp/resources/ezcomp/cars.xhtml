@@ -44,9 +44,10 @@
             <h:column>
                 <f:facet name="header"><h:outputText value="Actions"/></f:facet>
                 <h:form>
-                    <h:commandLink action="#{employeeController.doShowCar(car)}" value="Show"/>
-                    <h:commandLink action="#{employeeController.doUpdateCar(car)}" value="Edit"/>
-                    <h:commandLink action="#{employeeController.doDeleteCar(car)}" value="Delete"/>
+                    <h:commandButton action="#{employeeController.doMaintainCar(car)}" class="btn btn-default" image="../../resources/images/maintenanceLogo.png" title="Add Maintenance"/>
+                    <h:commandButton action="#{employeeController.doShowCar(car)}" class="btn btn-default" image="../../resources/images/showLogo.png" title="Show"/>
+                    <h:commandButton action="#{employeeController.doUpdateCar(car)}" class="btn btn-default" image="../../resources/images/editLogo.png" title="Edit"/>
+                    <h:commandButton action="#{employeeController.doDeleteCar(car)}" class="btn btn-default" image="../../resources/images/deleteLogo.png" title="Delete"/>
                 </h:form>
             </h:column>
         </h:dataTable>

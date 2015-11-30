@@ -3,25 +3,25 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                template="./../../WEB-INF/templates/employeeTemplate.xhtml"
-                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+                template="/WEB-INF/templates/employeeTemplate.xhtml">
 
     <ui:define name="title">
-        Car Management Home
+        Help
     </ui:define>
 
     <ui:define name="nav">
-        
     </ui:define>
 
     <ui:define name="sidebar">
-        <ul class="nav nav-sidebar">
-            <li><a href="carCreation.xhtml">Add a new car</a></li>
-            <li><a href="#">Search a car</a></li>
-        </ul>
     </ui:define>
-    
+
     <ui:define name="content">
-        <ezcomp:cars cars="#{employeeController.cars}" />
+        <h1>FAQ</h1>
+        <p>This section is for FAQ</p>
+        <h1>Further help</h1>
+        <p>
+            If you encounter serious trouble and want personal support, please email support@carent.com. (Note: this is a fake address)
+        </p>
     </ui:define>
+
 </ui:composition>
