@@ -5,19 +5,13 @@
  */
 package edu.iit.sat.itmd4515.sdupoy.fp.domain;
 
-import java.io.Serializable;
+
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -30,19 +24,11 @@ import javax.persistence.TemporalType;
         @NamedQuery(name="Reservation.findByStartDate", query ="select r from Reservation r where r.startDate = :startDate"),
         @NamedQuery(name="Reservation.findByEndDate", query ="select r from Reservation r where r.endDate = :endDate")
 })
-public class Reservation implements Serializable, Comparable {
+public class Reservation extends Event {
     //----------------------//
     //      Attributes      //
     //----------------------//
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RESERV_ID", nullable = false)
-    private Long id;
     
-    @Temporal(TemporalType.DATE)   
-    private Date startDate;
-    
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
     
     @ManyToOne(optional=false)
     @JoinColumn(name="CAR_ID",referencedColumnName="CAR_ID")
@@ -60,6 +46,7 @@ public class Reservation implements Serializable, Comparable {
      * Default constructor (empty)
      */
     public Reservation() {
+        super();
     }
     
     /**
@@ -68,52 +55,7 @@ public class Reservation implements Serializable, Comparable {
      * @param end the end date
     */
     public Reservation(Date start, Date end){
-        this.startDate = start;
-        this.endDate = end;
-    }
-    
-    /**
-     * Get the value of id
-     * @return the value of id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * Get the value of startDate
-     * @return the value of startDate
-     */
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    /**
-     * Set the value of startDate
-     * @param startDate new value of startDate
-     */
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    /**
-     * Get the value of endDate
-     * @return the value of endDate
-     */
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    /**
-     * Set the value of endDate
-     * @param endDate new value of endDate
-     */
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+        super(start, end);
     }
     
     /**
@@ -156,23 +98,5 @@ public class Reservation implements Serializable, Comparable {
     public String toString() {
         return "Reservation{" + "id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", car=" + car + ", client=" + client + '}';
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        if(this.equals(o)){
-            return 1;
-        } else {
-            return -1;
-        }
-    }   
+ 
 }

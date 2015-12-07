@@ -13,6 +13,10 @@ and open the template in the editor.
     height: 5em;
 }
 
+#employee-sidebar{
+    margin-top: 5.5em;
+}
+
 #employee-container{
     margin-top: 5.5em;
 }
@@ -39,3 +43,29 @@ and open the template in the editor.
     padding-left: 2em;
     padding-right: 2em;
 }
+
+.car-table{   
+	border-collapse:collapse;
+        font-size: 1.3em;
+        width: 85%;
+}
+
+.car-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.car-table-odd-row{
+	text-align:center;
+	border-top:1px solid #BBBBBB;
+        
+}
+
+.car-table-even-row{
+	text-align:center;
+	border-top:1px solid #BBBBBB;
+}
+
+

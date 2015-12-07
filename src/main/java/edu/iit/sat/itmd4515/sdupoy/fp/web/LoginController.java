@@ -8,8 +8,7 @@ package edu.iit.sat.itmd4515.sdupoy.fp.web;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
@@ -18,7 +17,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Simon
  */
-@Named
+@ManagedBean(name="loginController")
 @RequestScoped
 public class LoginController extends AbstractController{
     

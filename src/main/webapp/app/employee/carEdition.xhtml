@@ -1,21 +1,79 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition  xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                template="../../WEB-INF/templates/employeeTemplate.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 template="../../WEB-INF/templates/employeeTemplate.xhtml"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
 
     <ui:define name="title">
         Edit Car Details
     </ui:define>
 
     <ui:define name="nav"></ui:define>
-    
+
 
     <ui:define name="content">
-        <ezcomp:car car="#{employeeController.car}" action="#{employeeController.executeUpdateCar()}" readonly="false" />
+        <div class="form-horizontal">
+            <h:form>
+                <fieldset>
+                    <legend>Edit car information</legend>
+                    <div class="form-group">
+                        <h:inputHidden id="id" value="#{employeeController.car.id}" />
+                        <h:outputLabel for="carId" class="col-md-2 control-label">Car n°</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:outputText value="#{employeeController.car.id}" title="Car n°" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="carModel" class="col-md-2 control-label">Car Model</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="carModel" class="form-control" value="#{employeeController.car.model}" required="true" size="20" maxlength="60" />
+                            <h:message id="carModelMessage" for="carModel" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="carMaker" class="col-md-2 control-label">Car Maker</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="carMaker" class="form-control" value="#{employeeController.car.maker}" width="30" required="true" size="20" maxlength="60" />
+                            <h:message id="carMakerMessage" for="carMaker" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="licensePlate" class="col-md-2 control-label">License Plate</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="licensePlate" class="form-control" value="#{employeeController.car.licensePlate}" required="true" size="20" maxlength="60" />
+                            <h:message id="carLPMessage" for="licensePlate" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="nbKms" class="col-md-2 control-label">Number of kilometers  </h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="nbKms" class="form-control" value="#{employeeController.car.nbKms}" required="true" size="20" maxlength="60" />
+                            <h:message id="carNbKmsMessage" for="nbKms" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="options" class="col-md-2 control-label">Options  </h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="options" class="form-control" value="#{employeeController.car.options}" size="20" maxlength="60" />
+                            <h:message id="carOptionsMessage" for="options" errorClass="error" />
+                        </div>
+                    </div>
+                    <h:messages globalOnly="true" infoClass="info" />
+                    <div class="col-md-7 col-md-offset-2">
+                        <h:commandButton value="Edit this car" class="btn btn-primary" action="#{employeeController.executeUpdateCar()}"/>
+
+                    </div>
+                </fieldset>
+            </h:form>
+        </div>
+
     </ui:define>
 
 </ui:composition>

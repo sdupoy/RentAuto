@@ -12,8 +12,59 @@
     </ui:define>
 
     <ui:define name="nav"></ui:define>
-    
+
     <ui:define name="content">
-        <ezcomp:car car="#{employeeController.car}" action="#{employeeController.executeCreateCar()}" readonly="false" />
+        <div class="form-horizontal">
+            <h:form>
+                <fieldset>
+                    <legend>New car information</legend>
+                    <div class="form-group">
+                        <h:outputLabel for="carModel" class="col-md-2 control-label">Car Model</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="carModel" class="form-control" value="#{employeeController.car.model}" required="true" size="20" maxlength="60" />
+                            <h:message id="carModelMessage" for="carModel" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="carMaker" class="col-md-2 control-label">Car Maker</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="carMaker" class="form-control" value="#{employeeController.car.maker}" width="30" required="true" size="20" maxlength="60" />
+                            <h:message id="carMakerMessage" for="carMaker" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="licensePlate" class="col-md-2 control-label">License Plate</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="licensePlate" class="form-control" value="#{employeeController.car.licensePlate}" required="true" size="20" maxlength="60" />
+                            <h:message id="carLPMessage" for="licensePlate" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="nbKms" class="col-md-2 control-label">Number of kilometers  </h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="nbKms" class="form-control" value="#{employeeController.car.nbKms}" required="true" size="20" maxlength="60" />
+                            <h:message id="carNbKmsMessage" for="nbKms" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel for="options" class="col-md-2 control-label">Options  </h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="options" class="form-control" value="#{employeeController.car.options}" size="20" maxlength="60" />
+                            <h:message id="carOptionsMessage" for="options" errorClass="error" />
+                        </div>
+                    </div>
+                    <h:messages globalOnly="true" infoClass="info" />
+                    <div class="col-md-7 col-md-offset-2">
+                        <h:commandButton value="Add this car" class="btn btn-primary" action="#{employeeController.executeCreateCar()}"/>
+
+                    </div>
+                </fieldset>
+            </h:form>
+        </div>
+
     </ui:define>
 </ui:composition>

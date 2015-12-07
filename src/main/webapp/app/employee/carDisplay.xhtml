@@ -12,10 +12,91 @@
     </ui:define>
 
     <ui:define name="nav"></ui:define>
-    
+
     <ui:define name="content">
-        <ezcomp:car car="#{employeeController.car}" readonly="true" />
-        <ezcomp:maintenances maintenances="#{employeeController.maintenances}" readonly="true" />
+        <h2>Car details</h2>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <h:outputLabel for="carId" class="col-md-2 control-label">Car n°</h:outputLabel>
+                <h:inputHidden id="id" value="#{employeeController.car.id}" />
+                <div class="col-md-7">
+                    <h:outputText value="#{employeeController.car.id}" title="Car n°" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="carModel" class="col-md-2 control-label">Car Model</h:outputLabel>
+                <div class="col-md-7">
+                    <h:outputText value="#{employeeController.car.model}" title="Model" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="carMaker" class="col-md-2 control-label">Car Maker</h:outputLabel>
+                <div class="col-md-7">
+                    <h:outputText value="#{employeeController.car.maker}" title="Maker" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="carLP" class="col-md-2 control-label">License Plate</h:outputLabel>
+                <div class="col-md-7">
+                    <h:outputText value="#{employeeController.car.licensePlate}" title="License Plate" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="carNbKms" class="col-md-2 control-label">Kilometers</h:outputLabel>
+                <div class="col-md-7">
+                    <h:outputText value="#{employeeController.car.nbKms}" title="Kilometers" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="carOptions" class="col-md-2 control-label">Car Options</h:outputLabel>
+                <div class="col-md-7">
+                    <h:outputText value="#{employeeController.car.options}" title="Options" class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h:form>
+                    <h:commandLink type="button" class="btn btn-primary" action="carManagementHome"><i class="fa fa-mail-reply"></i> Back to the list</h:commandLink>
+                </h:form>
+            </div>
+            
+        </div>
+        
+        <h:dataTable value="#{employeeController.car.maintenances}" var="maintenance"
+                     styleClass="car-table"
+                     headerClass="car-table-header"
+                     rowClasses="car-table-odd-row,car-table-even-row"
+                     >
+
+            <h:column>
+                <!-- column header -->
+                <f:facet name="header">Maintenance n°</f:facet>
+                <!-- row record -->
+                #{maintenance.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Reason</f:facet>
+                    #{maintenance.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Starts</f:facet>
+                    #{maintenance.startDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Ends</f:facet>
+                    #{maintenance.endDate}
+            </h:column>
+
+            
+        </h:dataTable>
+
+
+
     </ui:define>
 
 </ui:composition>

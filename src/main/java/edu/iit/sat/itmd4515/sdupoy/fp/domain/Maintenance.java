@@ -5,40 +5,26 @@
  */
 package edu.iit.sat.itmd4515.sdupoy.fp.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author Simon
  */
 @Entity
-public class Maintenance implements Serializable, Comparable {
+public class Maintenance extends Event {
     //----------------------//
     //      Attributes      //
     //----------------------//
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MTN_ID", nullable = false)
-    protected Long id;
     
     @ManyToOne(optional=false)
     @JoinColumn(name="CAR_ID",referencedColumnName="CAR_ID")
-    private Car car;    
+    private Car car; 
     
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
-    
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    private String title;
 
     //----------------------//
     //      Methods         //
@@ -48,6 +34,7 @@ public class Maintenance implements Serializable, Comparable {
      * Default constructor (empty)
      */
     public Maintenance() {
+        super();
     }
     
     /**
@@ -56,20 +43,7 @@ public class Maintenance implements Serializable, Comparable {
      * @param end the end date
      */
     public Maintenance(Date start, Date end){
-        this.startDate = start;
-        this.endDate = end;
-    }
-    
-    /**
-     * Get the value of id
-     * @return the value of id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        super(start, end);
     }
     
     /**
@@ -88,36 +62,23 @@ public class Maintenance implements Serializable, Comparable {
         this.car = car;
     }
     
+    
     /**
-     * Get the value of startDate
-     * @return the value of startDate
+     * Get the value of title
+     *
+     * @return the value of title
      */
-    public Date getStartDate() {
-        return startDate;
+    public String getTitle() {
+        return title;
     }
 
     /**
-     * Set the value of startDate
-     * @param startDate new value of startDate
+     * Set the value of title
+     *
+     * @param title new value of title
      */
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    /**
-     * Get the value of endDate
-     * @return the value of endDate
-     */
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    /**
-     * Set the value of endDate
-     * @param endDate new value of endDate
-     */
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -129,22 +90,4 @@ public class Maintenance implements Serializable, Comparable {
         return "Maintenance{" + "id=" + id + ", car=" + car + ", startDate=" + startDate + ", endDate=" + endDate + '}';
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        if(this.equals(o)){
-            return 1;
-        } else {
-            return -1;
-        }
-    }    
 }

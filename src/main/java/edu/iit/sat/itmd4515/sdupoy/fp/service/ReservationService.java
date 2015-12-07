@@ -29,6 +29,6 @@ public class ReservationService extends AbstractService<Reservation>{
      */
     @Override
     public List<Reservation> findAll() {
-        return em.createNamedQuery("Bill.findAll", Reservation.class).getResultList();
+        return em.createNamedQuery("Reservation.findAll", Reservation.class).getResultList();
     }
 }

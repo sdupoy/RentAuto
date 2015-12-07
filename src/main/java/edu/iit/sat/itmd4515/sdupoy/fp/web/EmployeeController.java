@@ -10,11 +10,16 @@ import edu.iit.sat.itmd4515.sdupoy.fp.domain.Car;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Employee;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Maintenance;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.CarService;
+import edu.iit.sat.itmd4515.sdupoy.fp.service.MaintenanceService;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.EmployeeService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,13 +27,18 @@ import javax.inject.Named;
  *
  * @author Simon
  */
-@Named
+@ManagedBean(name = "employeeController")
 @RequestScoped
 public class EmployeeController extends AbstractController {
 
+    private static final Logger LOG = Logger.getLogger(EmployeeController.class.getName());
+
     @EJB CarService carService;
     @EJB EmployeeService employeeService;
-    @Inject LoginController loginController;
+    @EJB MaintenanceService maintenanceService;
+    
+    @ManagedProperty(value="#{loginController}")
+    private LoginController loginController;
 
     private List<Car> cars;
     private Car car;
@@ -47,23 +57,28 @@ public class EmployeeController extends AbstractController {
     protected void postConstruct() {
         car = new Car();
         maintenance = new Maintenance();
+        maintenances = new ArrayList<>();
         employee = employeeService.findEmployeeByUsername(loginController.getRemoteUser());
         agency = employee.getAgency();
-        cars = agency.getCars();
+        refreshCars();
         super.postConstruct();
-        
     }
 
     private void refreshCars() {
         cars = employeeService.findEmployeeByUsername(loginController.getRemoteUser()).getAgency().getCars();
+        for (Car car1 : cars){
+            for (Maintenance maintenance1 : car1.getMaintenances()){
+                maintenances.add(maintenance1);
+            }
+        }
     }
     
     public String doHelp() {
-        return "help";
+        return "help" + FACES_REDIRECT;
     }
     
     public String doSettings() {
-        return "settings";
+        return "settings" + FACES_REDIRECT;
     }
     
     /**
@@ -72,7 +87,7 @@ public class EmployeeController extends AbstractController {
      */
     public String doCreateCar() {
         car = new Car();
-        return "carCreation";
+        return "carCreation" + FACES_REDIRECT;
     }
 
     /**
@@ -82,7 +97,7 @@ public class EmployeeController extends AbstractController {
     public String executeCreateCar() {
         carService.create(car, employee.getAgency());
         refreshCars();
-        return "carManagementHome.xhtml";
+        return "carManagementHome" + FACES_REDIRECT;
     }
     
     public String doShowCar(Car car) {
@@ -92,36 +107,61 @@ public class EmployeeController extends AbstractController {
     }
 
     public String doUpdateCar(Car car) {
+        LOG.info("preparing update ");
+        LOG.info( car.toString());
         this.car = car;
         return "carEdition";
     }
     
     public String executeUpdateCar() {
+        LOG.info("executing update ");
+        LOG.info( car.toString());
         carService.update(car);
         refreshCars();
-
-        return "carManagementHome";
+        return "carManagementHome" + FACES_REDIRECT;
     }
 
     public String doDeleteCar(Car car) {
+        LOG.info("executing deletion ");
+        LOG.info( car.toString());
         carService.delete(car, agency);
         refreshCars();
-        return "carManagementHome";
+        return "carManagementHome" + FACES_REDIRECT;
+    }
+    
+    public String doDeleteMaintenance(Maintenance maintenance) {
+        LOG.info("Preparing to delete ");
+        LOG.info( maintenance.toString());
+        this.car = maintenance.getCar();
+        maintenanceService.deleteMaintenance(maintenance, car);
+        return "carMaintenanceHome" + FACES_REDIRECT;
     }
     
     public String doMaintainCar(Car car){
+        LOG.info("Preparing to add a new maintenance on ");
+        LOG.info( car.toString());
         this.car = car;
         this.maintenance = new Maintenance();
-        System.out.println("Car id :" + car.getId());
-        System.out.println("M id :" + maintenance.getId());
         return "carMaintenance";
     }
     
     public String executeCreateMaintenance(){
-        System.out.println("Car id :" + car.getId());
-        System.out.println("M id :" + maintenance.getId());
-        carService.addMaintenance(car, maintenance);
-        return "carManagementHome";
+        LOG.info("Creating a new maintenance on ");
+        LOG.info( car.toString());
+        maintenanceService.addMaintenance(car, maintenance);
+        return "carMaintenanceHome" + FACES_REDIRECT;
+    }
+    
+    public String doUpdateMaintenance(Maintenance maintenance) {
+        LOG.info("Preparing to update ");
+        LOG.info( maintenance.toString());
+        this.maintenance = maintenance;
+        return "carMaintenanceEdition";
+    }
+    
+    public String executeUpdateMaintenance() { 
+        maintenanceService.updateMaintenance(maintenance);
+        return "carMaintenanceHome" + FACES_REDIRECT;
     }
 
     public List<Car> getCars() {
@@ -172,6 +212,14 @@ public class EmployeeController extends AbstractController {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public LoginController getLoginController() {
+        return loginController;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
     
     

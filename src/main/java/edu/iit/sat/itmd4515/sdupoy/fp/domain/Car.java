@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Car implements Serializable, Comparable {
     protected Long id;
     
     @Column(unique = true)
+    @Size(min=5, max = 10, message = "Wrong size !")
     private String licensePlate;
     
     private Long nbKms;

@@ -5,14 +5,14 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="./../../WEB-INF/templates/employeeTemplate.xhtml"
                 xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp"
-                xmlns:f="http://java.sun.com/jsf/core">   
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Car Management Home
+        Car Maintenance Home
     </ui:define>
 
     <ui:define name="nav">
-
+        
     </ui:define>
 
     <ui:define name="sidebar">
@@ -21,10 +21,10 @@
             <li><a href="#">Search a car</a></li>
         </ul>
     </ui:define>
-
+    
     <ui:define name="content">
-        <h2>Car Management Home</h2>
-        <h:dataTable value="#{employeeController.cars}" var="car"
+        <h2>Car Maintenance Home</h2>
+        <h:dataTable value="#{employeeController.maintenances}" var="maintenance"
                      styleClass="car-table"
                      headerClass="car-table-header"
                      rowClasses="car-table-odd-row,car-table-even-row"
@@ -32,45 +32,38 @@
 
             <h:column>
                 <!-- column header -->
-                <f:facet name="header">Car n°</f:facet>
+                <f:facet name="header">Maintenance n°</f:facet>
                 <!-- row record -->
-                #{car.id}
+                #{maintenance.id}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Car Model</f:facet>
-                    #{car.model}
+                <f:facet name="header">Reason</f:facet>
+                    #{maintenance.title}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Car Maker</f:facet>
-                    #{car.maker}
+                <f:facet name="header">Starts</f:facet>
+                    #{maintenance.startDate}
             </h:column>
 
             <h:column>
-                <f:facet name="header">License Plate</f:facet>
-                    #{car.licensePlate}
+                <f:facet name="header">Ends</f:facet>
+                    #{maintenance.endDate}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Kilometers</f:facet>
-                    #{car.nbKms}
+                <f:facet name="header">Car concerned</f:facet>
+                    #{maintenance.car.licensePlate} #{maintenance.car.maker} #{maintenance.car.model}
             </h:column>
-
-            <h:column>
-                <f:facet name="header">Options</f:facet>
-                    #{car.options}
-            </h:column>
-
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandLink type="button" class="btn btn-primary" action="#{employeeController.doMaintainCar(car)}"><i class="fa fa-wrench"></i></h:commandLink>
-                    <h:commandLink type="button" class="btn btn-success" action="#{employeeController.doShowCar(car)}"><i class="fa fa-eye"></i></h:commandLink>
-                    <h:commandLink type="button" class="btn btn-warning" action="#{employeeController.doUpdateCar(car)}"><i class="fa fa-pencil"></i></h:commandLink>
-                    <h:commandLink type="button" class="btn btn-danger" action="#{employeeController.doDeleteCar(car)}"><i class="fa fa-remove"></i></h:commandLink>
+                    <h:commandLink type="button" class="btn btn-warning" action="#{employeeController.doUpdateMaintenance(maintenance)}"><i class="fa fa-pencil"></i></h:commandLink>
+                    <h:commandLink type="button" class="btn btn-danger" action="#{employeeController.doDeleteMaintenance(maintenance)}"><i class="fa fa-remove"></i></h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>
+        
     </ui:define>
 </ui:composition>

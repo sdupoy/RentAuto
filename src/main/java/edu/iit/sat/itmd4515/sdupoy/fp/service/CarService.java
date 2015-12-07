@@ -7,7 +7,6 @@ package edu.iit.sat.itmd4515.sdupoy.fp.service;
 
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Agency;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Car;
-import edu.iit.sat.itmd4515.sdupoy.fp.domain.Maintenance;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -43,32 +42,24 @@ public class CarService extends AbstractService<Car> {
     public void delete(Car car, Agency agency){
         agency = em.getReference(Agency.class, agency.getId());
         car = em.getReference(Car.class, car.getId());
-        
         agency.getCars().remove(car);
         car.setAgency(null);
-        
         em.remove(car);
     }
     
+    
+    
+    @Override
     public void update(Car newCar){
         Car currentCar = em.getReference(Car.class, newCar.getId());
-        
         currentCar.setLicensePlate(newCar.getLicensePlate());
         currentCar.setMaker(newCar.getMaker());
         currentCar.setModel(newCar.getModel());
         currentCar.setNbKms(newCar.getNbKms());
         currentCar.setOptions(newCar.getOptions());
-        
     }
     
-    public void addMaintenance(Car car, Maintenance m){
-        car = em.getReference(Car.class, car.getId());
-        
-        car.addMaintenance(m);
-        m.setCar(car);
-        em.persist(m);
-        em.merge(car);
-    }
+    
     
     /**
      * Overriding the findAll of the superclass
