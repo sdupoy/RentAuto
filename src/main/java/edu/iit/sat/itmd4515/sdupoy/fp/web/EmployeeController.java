@@ -234,6 +234,13 @@ public class EmployeeController extends AbstractController {
         return "clientManagementHome" + FACES_REDIRECT;
     }
     
+    public String searchClientByName(){
+        LOG.info("Preparing to search " + this.search);
+        this.clients = clientService.findByName(search);
+        LOG.info( "Search returned " + clients.toString());
+        return "clientSearchResult";
+    }
+    
     public List<Car> getCars() {
         return cars;
     }

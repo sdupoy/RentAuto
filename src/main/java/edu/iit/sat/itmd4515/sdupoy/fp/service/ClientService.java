@@ -58,6 +58,17 @@ public class ClientService extends AbstractService<Client> {
     }
     
     /**
+     *
+     * @param name
+     * @return the user associated with the lastName
+     */
+    public List<Client> findByName(String name){
+        TypedQuery<Client> query = em.createNamedQuery("Client.findByName", Client.class);
+        query.setParameter("name", name);
+        return query.getResultList();
+    }
+    
+    /**
      * Create a new client
      * @param client
      */
