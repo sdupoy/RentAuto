@@ -4,14 +4,16 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="../../WEB-INF/templates/employeeTemplate.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Show Car Details
     </ui:define>
 
     <ui:define name="nav"></ui:define>
+    
+    <ui:define name="sidebar">
+    </ui:define>
 
     <ui:define name="content">
         <h2>Car details</h2>
@@ -55,45 +57,71 @@
                 </div>
             </div>
         </div>
+
+        <h:form>
+            <h:commandLink type="button" class="btn btn-primary" action="carManagementHome"><i class="fa fa-mail-reply"></i> Back to the list</h:commandLink>
+        </h:form>
         <div class="row">
-            <div class="col-md-2">
-                <h:form>
-                    <h:commandLink type="button" class="btn btn-primary" action="carManagementHome"><i class="fa fa-mail-reply"></i> Back to the list</h:commandLink>
-                </h:form>
-            </div>
+            <div class="col-md-6">
+                <h:dataTable value="#{employeeController.car.maintenances}" var="maintenance"
+                             styleClass="car-table"
+                             headerClass="car-table-header"
+                             rowClasses="car-table-odd-row,car-table-even-row"
+                             >
+
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">Maintenance n°</f:facet>
+                        <!-- row record -->
+                        #{maintenance.id}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Reason</f:facet>
+                            #{maintenance.title}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Starts</f:facet>
+                            #{maintenance.startDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Ends</f:facet>
+                            #{maintenance.endDate}
+                    </h:column>
+                </h:dataTable>
+            </div>   
             
+            <div class="col-md-6">
+                <h:dataTable value="#{employeeController.car.reservations}" var="reservation"
+                             styleClass="car-table"
+                             headerClass="car-table-header"
+                             rowClasses="car-table-odd-row,car-table-even-row"
+                             >
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">Reservation n°</f:facet>
+                        <!-- row record -->
+                        #{reservation.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Client</f:facet>
+                            #{reservation.client.firstName} #{reservation.client.lastName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Starts</f:facet>
+                            #{reservation.startDate}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Ends</f:facet>
+                            #{reservation.endDate}
+                    </h:column>
+                </h:dataTable>
+            </div>   
         </div>
-        
-        <h:dataTable value="#{employeeController.car.maintenances}" var="maintenance"
-                     styleClass="car-table"
-                     headerClass="car-table-header"
-                     rowClasses="car-table-odd-row,car-table-even-row"
-                     >
 
-            <h:column>
-                <!-- column header -->
-                <f:facet name="header">Maintenance n°</f:facet>
-                <!-- row record -->
-                #{maintenance.id}
-            </h:column>
 
-            <h:column>
-                <f:facet name="header">Reason</f:facet>
-                    #{maintenance.title}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Starts</f:facet>
-                    #{maintenance.startDate}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Ends</f:facet>
-                    #{maintenance.endDate}
-            </h:column>
-
-            
-        </h:dataTable>
 
 
 

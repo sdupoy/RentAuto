@@ -29,7 +29,8 @@ import javax.validation.constraints.Size;
         @NamedQuery(name="Car.findByLicensePlate", query="select c from Car c where c.licensePlate = :LP"),
         @NamedQuery(name="Car.findByModel", query="select c from Car c where c.model = :model"),
         @NamedQuery(name="Car.findByMaker", query ="select c from Car c where c.maker = :maker"),
-        @NamedQuery(name="Car.findAll", query ="select c from Car c")
+        @NamedQuery(name="Car.findAll", query ="select c from Car c"),
+        @NamedQuery(name="Car.findByOptions", query ="select c from Car c where c.options like :options")
 })
 public class Car implements Serializable, Comparable {
     //----------------------//

@@ -8,10 +8,10 @@ and open the template in the editor.
     Author     : Simon
 */
 
-#employee-header{
-    padding-top: 10px;
-    height: 5em;
+.navbar-header{
+    padding-right: 10px;
 }
+
 
 #employee-sidebar{
     margin-top: 5.5em;
@@ -46,7 +46,7 @@ and open the template in the editor.
 
 .car-table{   
 	border-collapse:collapse;
-        font-size: 1.3em;
+        font-size: 1.2em;
         width: 85%;
 }
 
@@ -66,6 +66,10 @@ and open the template in the editor.
 .car-table-even-row{
 	text-align:center;
 	border-top:1px solid #BBBBBB;
+}
+
+.actions{
+    padding-top: 10px;
 }
 
 

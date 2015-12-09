@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -18,8 +20,10 @@ import javax.persistence.Table;
  * @author Simon
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Group.findGroup", query="select g from Group g where g.groupName = :groupname")
+})
 @Table(name = "sec_group")
-
 public class Group implements Serializable {
     @Id
     private String groupName;

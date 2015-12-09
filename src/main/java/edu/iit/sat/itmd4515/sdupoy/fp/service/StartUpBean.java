@@ -123,15 +123,15 @@ public class StartUpBean {
         employeeService.create(agent3);
         employeeService.create(manager1);
         
-        Car c1 = new Car("132 465", "Toyata", "Corolla", 0L);
+        Car c1 = new Car("132 465", "Corolla", "Toyata", 0L);
         c1.setAgency(agency1);
         agency1.addCar(c1);
         carService.create(c1);
-        Car c2 = new Car("465 465", "Porsche", "Cayenne S", 27583L, "GPS, Bluetooth");
+        Car c2 = new Car("465 465", "Cayenne S", "Porsche", 27583L, "GPS, Bluetooth");
         c2.setAgency(agency1);
         agency1.addCar(c2);
         carService.create(c2);
-        Car c3 = new Car("132 132", "Audi", "A5", 12365L);
+        Car c3 = new Car("132 132", "A5", "Audi", 12365L);
         c3.setAgency(agency2);
         agency2.addCar(c3);
         carService.create(c3);

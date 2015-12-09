@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="../../WEB-INF/templates/employeeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Client creation
+    </ui:define>
+
+    <ui:define name="nav">
+    </ui:define>
+
+    <ui:define name="sidebar">
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="form-horizontal">
+            <h:form>
+                <fieldset>
+                    <legend>New client information</legend>
+                    <div class="form-group">
+                        <h:outputLabel for="clientFirstName" class="col-md-2 control-label">First Name</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="clientFirstName" class="form-control" value="#{employeeController.client.firstName}" required="true" size="20" maxlength="60" />
+                            <h:message id="clientFirstNameMessage" for="clientFirstName" errorClass="error" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="clientLastName" class="col-md-2 control-label">Last Name</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="clientLastName" class="form-control" value="#{employeeController.client.lastName}" required="true" size="20" maxlength="60" />
+                            <h:message id="clientLastNameMessage" for="clientLastName" errorClass="error" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="clientUserName" class="col-md-2 control-label">User Name</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="clientUserName" class="form-control" value="#{employeeController.user.username}" required="true" size="20" maxlength="60" />
+                            <h:message id="clientUserNameMessage" for="clientUserName" errorClass="error" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="clientPassword" class="col-md-2 control-label">Password</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="clientPassword" class="form-control" value="#{employeeController.user.password}" required="true" size="20" maxlength="60" />
+                            <h:message id="clientPasswordMessage" for="clientPassword" errorClass="error" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="clientMailAddress" class="col-md-2 control-label">Mail address</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="clientMailAddress" class="form-control" value="#{employeeController.client.mailAddress}" required="true" size="20" maxlength="60" />
+                            <h:message id="clientMailAddressMessage" for="clientMailAddress" errorClass="error" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="clientBillingAddress" class="col-md-2 control-label">Billing address</h:outputLabel>
+                        <div class="col-md-7">
+                            <h:inputText id="clientBillingAddress" class="form-control" value="#{employeeController.client.billingAddress}" required="true" size="20" maxlength="60" />
+                            <h:message id="clientBillingAddressMessage" for="clientBillingAddress" errorClass="error" />
+                        </div>
+                    </div>
+
+                    <h:messages globalOnly="true" infoClass="info" />
+                    <div class="col-md-7 col-md-offset-2">
+                        <h:commandButton value="Create this client" class="btn btn-primary" action="#{employeeController.executeCreateClient()}"/>
+
+                    </div>
+                </fieldset>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

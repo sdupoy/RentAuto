@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./../../WEB-INF/templates/employeeTemplate.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">
+        Car search
+    </ui:define>
+
+    <ui:define name="nav">
+    </ui:define>
+
+    <ui:define name="sidebar">
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>Search</h2>
+
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="searchByLP">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">
+                            Search by license plate
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="general">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <div class="form-group">
+                                    <h:outputLabel for="search" class="col-md-4 control-label">Please enter the license plate you are searching for</h:outputLabel>
+                                    <div class="col-md-6">
+                                        <h:inputText id="search" class="form-control" value="#{employeeController.search}" required="true" size="20" maxlength="60" />
+                                        <h:message id="searchMessage" for="search" errorClass="error" />
+                                    </div>
+                                </div>
+                                <h:messages globalOnly="true" infoClass="info" />
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h:commandButton value="Search" class="btn btn-primary" action="#{employeeController.searchCarByLP()}"/>
+
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="searchByMaker">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseTwo">
+                            Search by maker
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="searchByMaker">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <div class="form-group">
+                                    <h:outputLabel for="search" class="col-md-4 control-label">Please enter the maker you search</h:outputLabel>
+                                    <div class="col-md-6">
+                                        <h:inputText id="search" class="form-control" value="#{employeeController.search}" required="true" size="20" maxlength="60" />
+                                        <h:message id="searchMessage" for="search" errorClass="error" />
+                                    </div>
+                                </div>
+                                <h:messages globalOnly="true" infoClass="info" />
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h:commandButton value="Search" class="btn btn-primary" action="#{employeeController.searchCarByMaker()}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="searchByModel">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree">
+                            Search by model
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="searchByModel">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <div class="form-group">
+                                    <h:outputLabel for="search" class="col-md-4 control-label">Please enter the model you search</h:outputLabel>
+                                    <div class="col-md-6">
+                                        <h:inputText id="search" class="form-control" value="#{employeeController.search}" required="true" size="20" maxlength="60" />
+                                        <h:message id="searchMessage" for="search" errorClass="error" />
+                                    </div>
+                                </div>
+                                <h:messages globalOnly="true" infoClass="info" />
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h:commandButton value="Search" class="btn btn-primary" action="#{employeeController.searchCarByModel()}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="searchByOptions">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">
+                            Search by options
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="searchByOptions">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <div class="form-group">
+                                    <h:outputLabel for="search" class="col-md-4 control-label">Please enter the option(s) you search</h:outputLabel>
+                                    <div class="col-md-6">
+                                        <h:inputText id="search" class="form-control" value="#{employeeController.search}" required="true" size="20" maxlength="60" />
+                                        <h:message id="searchMessage" for="search" errorClass="error" />
+                                    </div>
+                                </div>
+                                <h:messages globalOnly="true" infoClass="info" />
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h:commandButton value="Search" class="btn btn-primary" action="#{employeeController.searchCarByOptions()}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </ui:define>
+
+</ui:composition>

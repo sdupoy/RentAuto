@@ -102,4 +102,15 @@ public class CarService extends AbstractService<Car> {
         query.setParameter("LP", lp);
         return query.getSingleResult();
     }
+    
+    /**
+     * Finding cars with options
+     * @param options
+     * @return the list of cars from the search
+     */
+    public List<Car> findByOptions(String options) {
+        TypedQuery<Car> query = em.createNamedQuery("Car.findByOptions", Car.class);
+        query.setParameter("options", "%" + options + "%");
+        return query.getResultList();
+    }
 }

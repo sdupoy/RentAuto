@@ -25,45 +25,62 @@
     <h:body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
-                <div id="employee-header">
-                    <div id="navbar" class="navbar-header">
-                        <span class="navbar-brand">CaRent App</span>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">CaRent App</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><h:form><h:commandButton action="#{loginController.goHome()}" class="btn btn-default" image="../../resources/images/home.png" title="Home"/></h:form></li>
-                            <li><h:form><h:commandButton action="carManagementHome" class="btn btn-default" image="../../resources/images/carLogo.png" title="Car management"/></h:form></li>
-                            <li><h:form><h:commandButton action="carMaintenanceHome" class="btn btn-default" image="../../resources/images/maintenanceLogo.png" title="Maintenance management"/></h:form></li>
-                            <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/clientLogo.png" title="Client management"/></h:form></li>
+                            <li><h:form><h:commandLink action="#{loginController.goHome()}" class="btn btn-default btn-lg" title="Go home"><i class="fa fa-home"></i></h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="carManagementHome" class="btn btn-default btn-lg" title="Car management"><i class="fa fa-car"></i></h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="carMaintenanceHome" class="btn btn-default btn-lg" title="Maintenance management"><i class="fa fa-wrench"></i></h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="clientManagementHome" class="btn btn-default btn-lg" title="Client management"><i class="fa fa-briefcase"></i></h:commandLink></h:form></li>
                             <ui:insert name="nav"></ui:insert>
-                            <li><h:form><h:commandButton action="#{employeeController.doSettings()}" class="btn btn-default" image="../../resources/images/cogLogo.png" title="Settings"/></h:form></li>
-                            <li><h:form><h:commandButton action="#{employeeController.doHelp()}" class="btn btn-default" image="../../resources/images/helpLogo.png" title="Help"/></h:form></li>
-                            <li><h:form><h:commandButton action="#{loginController.doLogOut()}" class="btn btn-default" image="../../resources/images/logoutLogo.png" title="Logout"/></h:form></li>
+                            <li><h:form><h:commandLink action="#{employeeController.doSettings()}" class="btn btn-default btn-lg" title="Settings"><i class="fa fa-cogs"></i></h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="#{employeeController.doHelp()}" class="btn btn-default btn-lg" title="Help"><i class="fa fa-question"></i></h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="#{loginController.doLogOut()}" class="btn btn-default btn-lg" title="Logout"><i class="fa fa-sign-out"></i></h:commandLink></h:form></li>
+
                         </ul>
                     </div>
                 </div>
-            </div>
+            
         </nav>
 
         <div id="employee-container" class="container-fluid">
-                <div class="col-sm-2 col-md-2 sidebar" style="border: solid black 2px;">
+            <div class="row">
+                <div class="col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li>#{employeeController.employee.firstName} #{employeeController.employee.lastName}</li>
+                        <h:button value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}" class="btn btn-primary" action="#"/>
                     </ul>
-                    <ui:insert name="sidebar"></ui:insert>
+                    <br/>
+                    <ul class="nav nav-sidebar">
+                        <h:form>
+                            <h:commandButton value="Add a new car" class="btn btn-default" action="carCreation.xhtml"/>
+                            <h:commandButton value="Search a car" class="btn btn-default" action="carSearch.xhtml"/>
+                            <h:commandButton value="Add a new reservation" class="btn btn-default" action="reservationCreation.xhtml"/>
+                            <h:commandButton value="Search a reservation" class="btn btn-default" action="reservationSearch.xhtml"/>
+                            <h:commandButton value="Create a new client" class="btn btn-default" action="#{employeeController.doCreateClient()}"/>
+                            <h:commandButton value="Search a client" class="btn btn-default" action="clientSearch.xhtml"/>
+
+                        </h:form>
+                        <ui:insert name="sidebar"></ui:insert>
+
+                    </ul>
 
                 </div>
-            
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="border: solid black 2px;">
+
+                <div class="col-md-10 main">
                     <ui:insert name="content">Default content</ui:insert>
                 </div>
-           
-
+            </div>
 
         </div>
 
-
-        
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

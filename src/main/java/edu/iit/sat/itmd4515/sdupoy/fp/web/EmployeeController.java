@@ -7,11 +7,16 @@ package edu.iit.sat.itmd4515.sdupoy.fp.web;
 
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Agency;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Car;
+import edu.iit.sat.itmd4515.sdupoy.fp.domain.Client;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Employee;
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Maintenance;
+import edu.iit.sat.itmd4515.sdupoy.fp.domain.Reservation;
+import edu.iit.sat.itmd4515.sdupoy.fp.domain.security.User;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.CarService;
+import edu.iit.sat.itmd4515.sdupoy.fp.service.ClientService;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.MaintenanceService;
 import edu.iit.sat.itmd4515.sdupoy.fp.service.EmployeeService;
+import edu.iit.sat.itmd4515.sdupoy.fp.service.ReservationService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -20,8 +25,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
@@ -36,6 +39,8 @@ public class EmployeeController extends AbstractController {
     @EJB CarService carService;
     @EJB EmployeeService employeeService;
     @EJB MaintenanceService maintenanceService;
+    @EJB ReservationService reservationService;
+    @EJB ClientService clientService;
     
     @ManagedProperty(value="#{loginController}")
     private LoginController loginController;
@@ -44,9 +49,14 @@ public class EmployeeController extends AbstractController {
     private Car car;
     private List<Maintenance> maintenances;
     private Maintenance maintenance;
+    private List<Reservation> reservations;
+    private Reservation reservation;
+    private List<Client> clients;
+    private Client client;
     private Employee employee;
     private Agency agency;
-
+    private User user;
+    private String search;
     
     public EmployeeController() {
     }
@@ -56,11 +66,15 @@ public class EmployeeController extends AbstractController {
     @PostConstruct
     protected void postConstruct() {
         car = new Car();
+        user = new User();
+        client = new Client();
         maintenance = new Maintenance();
         maintenances = new ArrayList<>();
         employee = employeeService.findEmployeeByUsername(loginController.getRemoteUser());
         agency = employee.getAgency();
+        search = new String();
         refreshCars();
+        refreshClients();
         super.postConstruct();
     }
 
@@ -72,6 +86,11 @@ public class EmployeeController extends AbstractController {
             }
         }
     }
+    
+    private void refreshClients() {
+        clients = clientService.findAll();
+    }
+    
     
     public String doHelp() {
         return "help" + FACES_REDIRECT;
@@ -164,6 +183,57 @@ public class EmployeeController extends AbstractController {
         return "carMaintenanceHome" + FACES_REDIRECT;
     }
 
+    public String searchCarByLP(){
+        LOG.info("Preparing to search " + this.search);
+        
+        this.car = carService.findByLicensePlate(this.search);
+        LOG.info( "Search returned " + car.toString());
+        this.maintenances = car.getMaintenances();
+        return "carDisplay";
+    }
+    
+    public String searchCarByMaker(){
+        LOG.info("Preparing to search " + this.search);
+        this.cars = carService.findByMaker(search);
+        LOG.info( "Search returned " + cars.toString());
+        return "carSearchResult";
+    }
+    
+    public String searchCarByModel(){
+        LOG.info("Preparing to search " + this.search);
+        this.cars = carService.findByModel(search);
+        LOG.info( "Search returned " + cars.toString());
+        return "carSearchResult";
+    }
+    
+    public String searchCarByOptions(){
+        LOG.info("Preparing to search " + this.search);
+        this.cars = carService.findByOptions(search);
+        LOG.info( "Search returned " + cars.toString());
+        return "carSearchResult";
+    }
+    
+    /**
+     * Prepare a new client to be created by the user
+     * @return the page on which the new client will be created
+     */
+    public String doCreateClient() {
+        LOG.info("Preparing to create a client ");
+        client = new Client();
+        return "clientCreation"+ FACES_REDIRECT;
+    }
+    
+    /**
+     * Handle the action from newCar view
+     * @return the home page of car management
+     */
+    public String executeCreateClient() {
+        client.setUser(new User(user.getUsername(), user.getPassword()));
+        LOG.info("Create a new client" + this.client.toString() + "associated with " + this.user.toString());
+        clientService.createNewClient(client);
+        return "clientManagementHome" + FACES_REDIRECT;
+    }
+    
     public List<Car> getCars() {
         return cars;
     }
@@ -204,8 +274,6 @@ public class EmployeeController extends AbstractController {
         this.agency = agency;
     }
     
-    
-
     public Employee getEmployee() {
         return employee;
     }
@@ -221,7 +289,54 @@ public class EmployeeController extends AbstractController {
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
-    
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     
     
 }

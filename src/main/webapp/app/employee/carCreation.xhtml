@@ -4,14 +4,17 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="../../WEB-INF/templates/employeeTemplate.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Add a Car
     </ui:define>
 
     <ui:define name="nav"></ui:define>
+    
+    <ui:define name="sidebar">
+        
+    </ui:define>
 
     <ui:define name="content">
         <div class="form-horizontal">
@@ -65,6 +68,8 @@
                 </fieldset>
             </h:form>
         </div>
-
+        <h:form>
+            <h:commandLink type="button" class="btn btn-primary" action="carManagementHome"><i class="fa fa-mail-reply"></i> Back to the list</h:commandLink>
+        </h:form>
     </ui:define>
 </ui:composition>

@@ -7,6 +7,7 @@ package edu.iit.sat.itmd4515.sdupoy.fp.service;
 
 
 import edu.iit.sat.itmd4515.sdupoy.fp.domain.Client;
+import edu.iit.sat.itmd4515.sdupoy.fp.domain.security.Group;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -54,6 +55,16 @@ public class ClientService extends AbstractService<Client> {
         TypedQuery<Client> query = em.createNamedQuery("Client.findByUsername", Client.class);
         query.setParameter("lname", lastName);
         return query.getSingleResult();
+    }
+    
+    /**
+     * Create a new client
+     * @param client
+     */
+    public void createNewClient(Client client){
+        Group g = em.createNamedQuery("Group.findGroup", Group.class).setParameter("groupname", "clients").getSingleResult();
+        client.getUser().addUserToGroup(g);
+        em.persist(client);
     }
 
 }
