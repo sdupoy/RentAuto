@@ -32,8 +32,10 @@ import javax.persistence.OneToOne;
 @NamedQueries({
         @NamedQuery(name="Employee.findByLastName", query="select e from Employee e where e.lastName = :lname"),
         @NamedQuery(name="Employee.findByUsername", query="select e from Employee e where e.user.username = :uname"),
-        @NamedQuery(name="Employee.findByAgency", query="select e from Employee e where e.agency.location = :location"),
-        @NamedQuery(name="Employee.findByAgencyAndUsername", query="select e from Employee e where e.agency.location = :location and e.user.username = :uname")
+        @NamedQuery(name="Employee.findByName", query="select e from Employee e where e.firstName like :name or e.lastName like :name"),
+        @NamedQuery(name="Employee.findBySsn", query="select e from Employee e where e.ssn = :ssn"),
+        @NamedQuery(name="Employee.findByAgency", query="select e from Employee e where e.agency = :agency"),
+        @NamedQuery(name="Employee.findByAgencyAndUsername", query="select e from Employee e where e.agency = :agency and e.user.username = :uname")
 })
 public abstract class Employee implements Serializable, Comparable {
     //----------------------//
@@ -75,6 +77,10 @@ public abstract class Employee implements Serializable, Comparable {
         return id;
     }
 
+    /**
+     * Set the value of id
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }

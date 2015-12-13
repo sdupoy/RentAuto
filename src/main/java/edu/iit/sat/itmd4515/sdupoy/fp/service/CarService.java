@@ -39,6 +39,11 @@ public class CarService extends AbstractService<Car> {
         em.persist(car);
     }
     
+    /**
+     * Delete a car, and remove the link between the car and the agency
+     * @param car
+     * @param agency
+     */
     public void delete(Car car, Agency agency){
         agency = em.getReference(Agency.class, agency.getId());
         car = em.getReference(Car.class, car.getId());
@@ -113,4 +118,6 @@ public class CarService extends AbstractService<Car> {
         query.setParameter("options", "%" + options + "%");
         return query.getResultList();
     }
+    
+    
 }

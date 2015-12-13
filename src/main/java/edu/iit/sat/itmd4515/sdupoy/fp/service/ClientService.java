@@ -64,7 +64,7 @@ public class ClientService extends AbstractService<Client> {
      */
     public List<Client> findByName(String name){
         TypedQuery<Client> query = em.createNamedQuery("Client.findByName", Client.class);
-        query.setParameter("name", name);
+        query.setParameter("name", "%" + name + "%");
         return query.getResultList();
     }
     
@@ -76,6 +76,15 @@ public class ClientService extends AbstractService<Client> {
         Group g = em.createNamedQuery("Group.findGroup", Group.class).setParameter("groupname", "clients").getSingleResult();
         client.getUser().addUserToGroup(g);
         em.persist(client);
+    }
+    
+    @Override
+    public void update(Client newClient){
+        Client currentClient = em.getReference(Client.class, newClient.getId());
+        currentClient.setBillingAddress(newClient.getBillingAddress());
+        currentClient.setFirstName(newClient.getFirstName());
+        currentClient.setLastName(newClient.getLastName());
+        currentClient.setMailAddress(newClient.getMailAddress());
     }
 
 }

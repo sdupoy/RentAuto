@@ -38,11 +38,15 @@ public class ClientController extends AbstractController {
     private Reservation reservation;
     private Client client;
 
-
+    /**
+     * Default constructor (empty)
+     */
     public ClientController() {
     }
     
-    
+    /**
+     * Overriding the post construct
+     */
     @Override
     @PostConstruct
     protected void postConstruct() {
@@ -51,10 +55,18 @@ public class ClientController extends AbstractController {
         
     }
 
+    /**
+     * Going to the help page
+     * @return help page
+     */
     public String doHelp() {
         return "help";
     }
     
+    /**
+     * Going to the settings page
+     * @return settings page
+     */
     public String doSettings() {
         return "settings";
     }

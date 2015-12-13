@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/employeeTemplate.xhtml">
+    
+    <ui:define name="title">
+        Employee search
+    </ui:define>
+
+    <ui:define name="sidebar">
+        <h:form>
+            <h:commandButton value="Create a new employee" class="btn btn-default" action="#{managerController.doCreateAgent()}"/>
+            <h:commandButton value="Search an employee" class="btn btn-default" action="managerEmployeeSearch.xhtml"/>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="nav">
+        <li><h:form><h:commandLink action="#{managerController.doHumanResources()}" class="btn btn-default btn-lg" title="Human resources"><i class="fa fa-user"></i></h:commandLink></h:form></li>
+
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <h2>Search</h2>
+
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="searchByName">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">
+                            Search by name
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="searchByName">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <div class="form-group">
+                                    <h:outputLabel for="search" class="col-md-4 control-label">Please enter the name of the employee you are searching for</h:outputLabel>
+                                    <div class="col-md-6">
+                                        <h:inputText id="search" class="form-control" value="#{managerController.search}" required="true" size="20" maxlength="60" />
+                                        <h:message id="searchMessage" for="search" errorClass="error" />
+                                    </div>
+                                </div>
+                                <h:messages globalOnly="true" infoClass="info" />
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h:commandButton value="Search" class="btn btn-primary" action="#{managerController.searchEmployeeByName()}"/>
+
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="searchBySsn">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseTwo">
+                            Search by SSN
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="searchBySsn">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <div class="form-group">
+                                    <h:outputLabel for="search" class="col-md-4 control-label">Please enter the employee's SSN</h:outputLabel>
+                                    <div class="col-md-6">
+                                        <h:inputText id="search" class="form-control" value="#{managerController.search}" required="true" size="20" maxlength="60" />
+                                        <h:message id="searchMessage" for="search" errorClass="error" />
+                                    </div>
+                                </div>
+                                <h:messages globalOnly="true" infoClass="info" />
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h:commandButton value="Search" class="btn btn-primary" action="#{managerController.searchEmployeeBySsn()}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        
+    </ui:define>
+
+</ui:composition>

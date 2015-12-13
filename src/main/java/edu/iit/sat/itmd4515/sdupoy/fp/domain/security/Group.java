@@ -21,14 +21,15 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name="Group.findGroup", query="select g from Group g where g.groupName = :groupname")
+    @NamedQuery(name = "Group.findGroup", query = "select g from Group g where g.groupName = :groupname")
 })
 @Table(name = "sec_group")
 public class Group implements Serializable {
+
     @Id
     private String groupName;
     private String groupDescription;
-    
+
     @ManyToMany(mappedBy = "userGroups")
     List<User> users = new ArrayList<>();
 
@@ -40,6 +41,7 @@ public class Group implements Serializable {
 
     /**
      * create a new group with a group name and a group password
+     *
      * @param groupName
      * @param groupDescription
      */
@@ -50,20 +52,22 @@ public class Group implements Serializable {
 
     /**
      * Get all the uers that a group contains
+     *
      * @return list of users
      */
-    public List<User> getGroupMembers(){
+    public List<User> getGroupMembers() {
         return this.users;
     }
-    
+
     /**
      * Set all the users that belong to a group
+     *
      * @param members
      */
-    public void setGroupMembers(List<User> members){
+    public void setGroupMembers(List<User> members) {
         this.users = members;
     }
-    
+
     /**
      * Get the value of groupDescription
      *
@@ -81,7 +85,6 @@ public class Group implements Serializable {
     public void setGroupDescription(String groupDescription) {
         this.groupDescription = groupDescription;
     }
-
 
     /**
      * Get the value of groupName

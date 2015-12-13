@@ -171,6 +171,10 @@ public class Car implements Serializable, Comparable {
         return id;
     }
 
+    /**
+     * Set the value of id
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }

@@ -29,7 +29,7 @@ import javax.persistence.OneToOne;
 @NamedQueries({
         @NamedQuery(name="Client.findByLastName", query="select c from Client c where c.lastName = :lname"),
         @NamedQuery(name="Client.findByUsername", query="select c from Client c where c.user.username = :uname"),
-        @NamedQuery(name="Client.findByName", query="select c from Client c where c.user.username = :name or c.firstName = :name or c.lastName = :name"),
+        @NamedQuery(name="Client.findByName", query="select c from Client c where c.user.username like :name or c.firstName like :name or c.lastName like :name"),
         @NamedQuery(name="Client.findAll", query ="select c from Client c")
 })
 public class Client implements Serializable, Comparable {
@@ -82,6 +82,10 @@ public class Client implements Serializable, Comparable {
         return id;
     }
 
+    /**
+     * Set the value of id
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }

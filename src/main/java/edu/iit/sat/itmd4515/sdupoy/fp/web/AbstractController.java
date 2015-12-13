@@ -13,8 +13,11 @@ import javax.faces.context.FacesContext;
  * @author Simon
  */
 public abstract class AbstractController {
+
     protected FacesContext facesContext;
+
     protected static final String FACES_REDIRECT ="?faces-redirect=true";
+    
     
     @PostConstruct
     protected void postConstruct(){

@@ -108,7 +108,17 @@ public class StartUpBean {
         Reservation r1 = new Reservation(new GregorianCalendar(2014, 12, 10).getTime(), new GregorianCalendar(2014, 12, 12).getTime());
         cl1.addReservation(r1);
         r1.setClient(cl1);
+        Car c1 = new Car("132 465", "Corolla", "Toyata", 0L);
+        c1.setAgency(agency1);
+        agency1.addCar(c1);
+        carService.create(c1);
+        r1.setCar(c1);
         resaService.create(r1);
+        Reservation r2 = new Reservation(new GregorianCalendar(2015, 12, 10).getTime(), new GregorianCalendar(2015, 12, 12).getTime());
+        cl1.addReservation(r2);
+        r2.setClient(cl1);
+        r2.setCar(c1);
+        resaService.create(r2);
         
         cl1.getUser().addUserToGroup(clients);
         clientService.create(cl1);
@@ -123,10 +133,7 @@ public class StartUpBean {
         employeeService.create(agent3);
         employeeService.create(manager1);
         
-        Car c1 = new Car("132 465", "Corolla", "Toyata", 0L);
-        c1.setAgency(agency1);
-        agency1.addCar(c1);
-        carService.create(c1);
+        
         Car c2 = new Car("465 465", "Cayenne S", "Porsche", 27583L, "GPS, Bluetooth");
         c2.setAgency(agency1);
         agency1.addCar(c2);

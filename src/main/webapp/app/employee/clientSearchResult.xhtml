@@ -37,14 +37,23 @@
                 <f:facet name="header">Client name</f:facet>
                     #{client.firstName} #{client.lastName}
             </h:column>
+            
+            <h:column>
+                <f:facet name="header">Mail address</f:facet>
+                    #{client.mailAddress}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Address</f:facet>
+                    #{client.billingAddress}
+            </h:column>
 
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandLink type="button" class="btn btn-primary" action="#{employeeController.doMaintainCar(car)}" title="Add a maintenance"><i class="fa fa-wrench"></i></h:commandLink>
-                    <h:commandLink type="button" class="btn btn-success" action="#{employeeController.doShowCar(car)}"><i class="fa fa-eye"></i></h:commandLink>
-                    <h:commandLink type="button" class="btn btn-warning" action="#{employeeController.doUpdateCar(car)}"><i class="fa fa-pencil"></i></h:commandLink>
-                    <h:commandLink type="button" class="btn btn-danger" action="#{employeeController.doDeleteCar(car)}"><i class="fa fa-remove"></i></h:commandLink>
+                    <h:commandLink type="button" class="btn btn-primary" action="#{employeeController.doCreateReservation()}" title="Add a reservation"><i class="fa fa-car"></i></h:commandLink>
+                    <h:commandLink type="button" class="btn btn-success" action="#{employeeController.doShowClient(client)}" title="See client details"><i class="fa fa-eye"></i></h:commandLink>
+                    <h:commandLink type="button" class="btn btn-warning" action="#{employeeController.doUpdateClient(client)}" title="Update client info"><i class="fa fa-pencil"></i></h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>

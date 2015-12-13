@@ -25,11 +25,17 @@ public class LoginController extends AbstractController{
     private String username;
     @NotNull(message = "You must enter your password !")
     private String password;
-
     
+
+    /**
+     * Defautl constructor (empty)
+     */
     public LoginController() {
     }
     
+    /**
+     * Overriding the post construct
+     */
     @Override
     @PostConstruct
     protected void postConstruct(){
@@ -40,6 +46,10 @@ public class LoginController extends AbstractController{
         return facesContext.getExternalContext().getRemoteUser();
     }
     
+    /**
+     * log the user in and handle its type
+     * @return the correct home page for the user
+     */
     public String doLogin(){
         HttpServletRequest req = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try{
@@ -54,11 +64,17 @@ public class LoginController extends AbstractController{
             return "/app/employee/managerHome.xhtml" + FACES_REDIRECT;
         } else if (req.isUserInRole("CLIENT")){
             return "/app/client/clientHome.xhtml" + FACES_REDIRECT;
+        }else if (req.isUserInRole("ADMIN")){
+            return "/app/admin/adminHome.xhtml" + FACES_REDIRECT;
         } else{
             return "error.xhtml" + FACES_REDIRECT;
         }
     }
     
+    /**
+     * Go home page according to the user's type
+     * @return the correct home page
+     */
     public String goHome(){
         HttpServletRequest req = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         if(req.isUserInRole("AGENT")){
@@ -73,6 +89,10 @@ public class LoginController extends AbstractController{
         
     }
     
+    /**
+     * log out
+     * @return login page
+     */
     public String doLogOut(){
         HttpServletRequest req = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try{
@@ -120,5 +140,4 @@ public class LoginController extends AbstractController{
         this.username = username;
     }
 
-    
 }

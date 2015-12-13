@@ -33,7 +33,7 @@
                     <h:outputLabel class="col-md-2 control-label">Client</h:outputLabel>
                     <div class="col-md-7">
                         <h:selectOneMenu value="#{employeeController.client}">
-                            <f:selectItems value="#{employeeController.clients}" var="client" itemValue="#{client}" itemLabel="#{client.firstName} #{client.lastName}"/>
+                            <f:selectItems value="#{employeeController.clients}" var="client" itemValue="#{employeeController.client.id}" itemLabel="#{client.firstName} #{client.lastName}"/>
                         </h:selectOneMenu>
                     </div>
                 </div>
@@ -56,8 +56,16 @@
                         <h:message id="endDateMessage" for="endDate" errorClass="error" />
                     </div>
                 </div>
+            <h:messages globalOnly="true" infoClass="info" />
+                    <div class="col-md-7 col-md-offset-2">
+                        <h:commandButton value="Add this reservation" class="btn btn-primary" action="#{employeeController.executeCreateReservation()}"/>
+
+                    </div>
             </h:form>
         </div>
+        <h:form>
+            <h:commandLink type="button" class="btn btn-primary" action="clientManagementHome"><i class="fa fa-mail-reply"></i> Back to the list</h:commandLink>
+        </h:form>
 
     </ui:define>
 

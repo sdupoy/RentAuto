@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -23,6 +25,9 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author Simon
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "User.findByUsername", query = "select u from User u where u.username = :search")
+})
 @Table(name = "sec_user")
 public class User implements Serializable {
     @Id
@@ -123,4 +128,10 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "username=" + username + ", password=" + password + ", userGroups=" + userGroups + '}';
+    }
+
+    
 }

@@ -6,12 +6,19 @@
 package edu.iit.sat.itmd4515.sdupoy.fp.domain;
 
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -22,13 +29,22 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name="Reservation.findByCar", query="select r from Reservation r where r.car = :car"),
         @NamedQuery(name="Reservation.findByClient", query="select r from Reservation r where r.client = :client"),
         @NamedQuery(name="Reservation.findByStartDate", query ="select r from Reservation r where r.startDate = :startDate"),
+        @NamedQuery(name="Reservation.findAll", query="select r from Reservation r"),
+        @NamedQuery(name="Reservation.findUpcoming", query="select r from Reservation r where r.startDate > :date"),
+        @NamedQuery(name="Reservation.findCurrent", query="select r from Reservation r where r.endDate > :date and r.startDate < :date"),
+        @NamedQuery(name="Reservation.findPast", query="select r from Reservation r where r.startDate < :date"),
         @NamedQuery(name="Reservation.findByEndDate", query ="select r from Reservation r where r.endDate = :endDate")
+        
 })
-public class Reservation extends Event {
+public class Reservation implements Serializable {
     //----------------------//
     //      Attributes      //
     //----------------------//
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    protected Long id;
     
     @ManyToOne(optional=false)
     @JoinColumn(name="CAR_ID",referencedColumnName="CAR_ID")
@@ -38,6 +54,70 @@ public class Reservation extends Event {
     @JoinColumn(name="CLIENT_ID",referencedColumnName="CLIENT_ID")
     private Client client;
     
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+
+    
+
+    /**
+     * Get the value of id
+     *
+     * @return the value of id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Set the value of id
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    /**
+     * Get the value of startDate
+     *
+     * @return the value of startDate
+     */
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    /**
+     * Set the value of startDate
+     *
+     * @param startDate new value of startDate
+     */
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    /**
+     * Get the value of endDate
+     *
+     * @return the value of endDate
+     */
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    /**
+     * Set the value of endDate
+     *
+     * @param endDate new value of endDate
+     */
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+    
+    
+    
     //----------------------//
     //      Methods         //
     //----------------------//
@@ -46,7 +126,6 @@ public class Reservation extends Event {
      * Default constructor (empty)
      */
     public Reservation() {
-        super();
     }
     
     /**
@@ -55,7 +134,8 @@ public class Reservation extends Event {
      * @param end the end date
     */
     public Reservation(Date start, Date end){
-        super(start, end);
+        this.startDate = start;
+        this.endDate = end;
     }
     
     /**

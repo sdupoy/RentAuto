@@ -30,6 +30,7 @@ public class Agency implements Serializable, Comparable {
     //----------------------//
     //      Attributes      //
     //----------------------//
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AGENCY_ID", nullable = false)
     protected Long id;
@@ -59,7 +60,10 @@ public class Agency implements Serializable, Comparable {
         return id;
     }    
 
-    
+    /**
+     * Set the value of id
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }

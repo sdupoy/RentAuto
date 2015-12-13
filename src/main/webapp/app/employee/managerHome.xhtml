@@ -10,15 +10,19 @@
     </ui:define>
 
     <ui:define name="sidebar">
+        <h:form>
+            <h:commandButton value="Create a new employee" class="btn btn-default" action="#{managerController.doCreateAgent()}"/>
+            <h:commandButton value="Search an employee" class="btn btn-default" action="managerEmployeeSearch.xhtml"/>
+        </h:form>
     </ui:define>
-    
+
     <ui:define name="nav">
-        <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/dollarLogo.png" title="Budget"/></h:form></li>
-        <li><h:form><h:commandButton action="#" class="btn btn-default" image="../../resources/images/userLogo.png" title="Human resources"/></h:form></li>
+        <li><h:form><h:commandLink action="#{managerController.doHumanResources()}" class="btn btn-default btn-lg" title="Human resources"><i class="fa fa-user"></i></h:commandLink></h:form></li>
+
     </ui:define>
-    
+
     <ui:define name="content">
-        
+
     </ui:define>
 
 </ui:composition>

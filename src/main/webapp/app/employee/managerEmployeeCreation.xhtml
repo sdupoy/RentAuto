@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./../../WEB-INF/templates/employeeTemplate.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">
+        Employee creation
+    </ui:define>
+
+    <ui:define name="nav">
+        <li><h:form><h:commandLink action="#{managerController.doHumanResources()}" class="btn btn-default btn-lg" title="Human resources"><i class="fa fa-user"></i></h:commandLink></h:form></li>
+
+    </ui:define>
+
+    <ui:define name="sidebar">
+        <h:form>
+            <h:commandButton value="Create a new employee" class="btn btn-default" action="managerEmployeeCreation.xhtml"/>
+            <h:commandButton value="Search an employee" class="btn btn-default" action="managerEmployeeSearch.xhtml"/>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="createNewAgent">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">
+                            Create a new agent
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="general">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <h:form>
+                                <fieldset>
+                                    <legend>New agent information</legend>
+                                    <div class="form-group">
+                                        <h:outputLabel for="employeeFirstName" class="col-md-2 control-label">First Name</h:outputLabel>
+                                        <div class="col-md-7">
+                                            <h:inputText id="employeeFirstName" class="form-control" value="#{managerController.agent.firstName}" required="true" size="20" maxlength="60" />
+                                            <h:message id="employeeFirstNameMessage" for="employeeFirstName" errorClass="error" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="employeeLastName" class="col-md-2 control-label">Last Name</h:outputLabel>
+                                        <div class="col-md-7">
+                                            <h:inputText id="employeeLastName" class="form-control" value="#{managerController.agent.lastName}" required="true" size="20" maxlength="60" />
+                                            <h:message id="employeeLastNameMessage" for="employeeLastName" errorClass="error" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="employeeUserName" class="col-md-2 control-label">User Name</h:outputLabel>
+                                        <div class="col-md-7">
+                                            <h:inputText id="employeeUserName" class="form-control" value="#{managerController.user.username}" required="true" size="20" maxlength="60" />
+                                            <h:message id="employeeUserNameMessage" for="employeeUserName" errorClass="error" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="employeePassword" class="col-md-2 control-label">Password</h:outputLabel>
+                                        <div class="col-md-7">
+                                            <h:inputText id="employeePassword" class="form-control" value="#{managerController.user.password}" required="true" size="20" maxlength="60" />
+                                            <h:message id="employeePasswordMessage" for="employeePassword" errorClass="error" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="employeeAddress" class="col-md-2 control-label">Employee address</h:outputLabel>
+                                        <div class="col-md-7">
+                                            <h:inputText id="employeeAddress" class="form-control" value="#{managerController.agent.address}" required="true" size="20" maxlength="60" />
+                                            <h:message id="employeeAddressMessage" for="employeeAddress" errorClass="error" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="employeeSsn" class="col-md-2 control-label">Employee SSN</h:outputLabel>
+                                        <div class="col-md-7">
+                                            <h:inputText id="employeeSsn" class="form-control" value="#{managerController.agent.ssn}" required="true" size="20" maxlength="60" />
+                                            <h:message id="employeeSsnMessage" for="employeeSsn" errorClass="error" />
+                                        </div>
+                                    </div>
+
+                                    <h:messages globalOnly="true" infoClass="info" />
+                                    <div class="col-md-7 col-md-offset-2">
+                                        <h:commandButton value="Create this agent" class="btn btn-primary" action="#{managerController.executeCreateAgent()}"/>
+
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </ui:define>
+
+</ui:composition>

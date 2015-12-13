@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../../WEB-INF/templates/employeeTemplate.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./../../WEB-INF/templates/employeeTemplate.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"> 
 
     <ui:define name="title">
         Client management home
@@ -16,6 +19,40 @@
 
     <ui:define name="content">
         <h2>Client management home</h2>
+        <h4>Current and upcoming reservations</h4>
+        <h:dataTable value="#{employeeController.reservations}" var="reservation"
+                     styleClass="car-table"
+                     headerClass="car-table-header"
+                     rowClasses="car-table-odd-row,car-table-even-row"
+                     >
+
+            <h:column>
+                <!-- column header -->
+                <f:facet name="header">Reservation n°</f:facet>
+                <!-- row record -->
+                #{reservation.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Client</f:facet>
+                    #{reservation.client.firstName} #{reservation.client.lastName}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Car</f:facet>
+                    #{reservation.car.model} #{reservation.car.maker} #{reservation.car.licensePlate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Starts</f:facet>
+                    #{reservation.startDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Ends</f:facet>
+                    #{reservation.endDate}
+            </h:column>
+        </h:dataTable>
     </ui:define>
 
 </ui:composition>

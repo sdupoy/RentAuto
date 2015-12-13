@@ -33,6 +33,11 @@ public class MaintenanceService extends AbstractService<Maintenance>{
         return em.createNamedQuery("Maitenance.findAll", Maintenance.class).getResultList();
     }
     
+    /**
+     * Add a maintenance m to a car c
+     * @param car
+     * @param m
+     */
     public void addMaintenance(Car car, Maintenance m){
         car = em.getReference(Car.class, car.getId());
         car.addMaintenance(m);
@@ -41,6 +46,11 @@ public class MaintenanceService extends AbstractService<Maintenance>{
         em.merge(car);
     }
     
+    /**
+     * Delete a maintenance m from a car c
+     * @param maintenance
+     * @param car
+     */
     public void deleteMaintenance(Maintenance maintenance, Car car){
         car = em.getReference(Car.class, car.getId());
         maintenance = em.getReference(Maintenance.class, maintenance.getId());
@@ -49,6 +59,10 @@ public class MaintenanceService extends AbstractService<Maintenance>{
         em.remove(maintenance);
     }
     
+    /**
+     * Update maintenance info
+     * @param newM
+     */
     public void updateMaintenance(Maintenance newM){
         Maintenance currentM = em.getReference(Maintenance.class, newM.getId());
         currentM.setTitle(newM.getTitle());
