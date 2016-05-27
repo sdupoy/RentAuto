@@ -18,4 +18,8 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-j2ee.netbeans_2e_deploy_2e_on_2e_save>false</org-netbeans-modules-maven-j2ee.netbeans_2e_deploy_2e_on_2e_save>
         <org-netbeans-modules-projectapi.jsf_2e_language>Facelets</org-netbeans-modules-projectapi.jsf_2e_language>
     </properties>
+    <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+        <word>App</word>
+        <word>CaRent</word>
+    </spellchecker-wordlist>
 </project-shared-configuration>

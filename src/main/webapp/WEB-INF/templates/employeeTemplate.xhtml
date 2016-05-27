@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <!-- Bootstrap -->
-        <h:outputStylesheet library="webjars/bootstrap/3.3.6/css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="style.css"  />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
         <title><ui:insert name="title">Welcome</ui:insert></title>
@@ -44,7 +44,6 @@
                             <li><h:form><h:commandLink action="#{employeeController.doSettings()}" class="btn btn-default btn-lg" title="Settings"><i class="fa fa-cogs"></i></h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="#{employeeController.doHelp()}" class="btn btn-default btn-lg" title="Help"><i class="fa fa-question"></i></h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="#{loginController.doLogOut()}" class="btn btn-default btn-lg" title="Logout"><i class="fa fa-sign-out"></i></h:commandLink></h:form></li>
-
                         </ul>
                     </div>
                 </div>
@@ -55,7 +54,7 @@
             <div class="row">
                 <div class="col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <h:button value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}" class="btn btn-primary" action="#"/>
+                        <h:button value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}" class="btn btn-primary"/>
                     </ul>
                     <br/>
                     <ul class="nav nav-sidebar">
@@ -81,11 +80,11 @@
 
         </div>
 
-        <!-- Bootstrap core JavaScript
+        <!-- Bootstrap core Java Script
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <h:outputScript library="webjars/bootstrap/3.3.6/js" name="bootstrap.min.js"/>
+        <h:outputScript name="js/bootstrap.js" />
 
 
         <script src="../../dist/js/bootstrap.min.js"></script>
@@ -93,7 +92,6 @@
         <script src="../../assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
 
     </h:body>
 </html>

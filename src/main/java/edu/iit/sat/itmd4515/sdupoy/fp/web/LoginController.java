@@ -28,7 +28,7 @@ public class LoginController extends AbstractController{
     
 
     /**
-     * Defautl constructor (empty)
+     * Default constructor (empty)
      */
     public LoginController() {
     }
