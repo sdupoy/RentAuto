@@ -39,7 +39,7 @@
                             <li><h:form><h:commandLink action="#{loginController.goHome()}" class="btn btn-default btn-lg" title="Go home"><i class="fa fa-home"></i></h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="carManagementHome" class="btn btn-default btn-lg" title="Car management"><i class="fa fa-car"></i></h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="carMaintenanceHome" class="btn btn-default btn-lg" title="Maintenance management"><i class="fa fa-wrench"></i></h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="#{employeeController.doClientManagementHome()}" class="btn btn-default btn-lg" title="Client management"><i class="fa fa-briefcase"></i></h:commandLink></h:form></li>
+                            <li><h:form rendered="#{employeeController.employee.user.userGroups} eq 'managers'"><h:commandLink action="#{managerController.doHumanResources()}" class="btn btn-default btn-lg" title="Human resources"><i class="fa fa-user"></i></h:commandLink></h:form></li>
                             <ui:insert name="nav"></ui:insert>
                             <li><h:form><h:commandLink action="#{employeeController.doSettings()}" class="btn btn-default btn-lg" title="Settings"><i class="fa fa-cogs"></i></h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="#{employeeController.doHelp()}" class="btn btn-default btn-lg" title="Help"><i class="fa fa-question"></i></h:commandLink></h:form></li>
